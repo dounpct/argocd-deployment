@@ -18,4 +18,4 @@ data:
         args: ["$ARG_PARAMETERS | argocd-vault-plugin generate - "]
       discover:
         find:
-          command: [sh, -c, find $ARGOCD_APP_SOURCE_PATH -name Chart.yaml]
+          command: [sh, -c, find . -name *.yaml]
