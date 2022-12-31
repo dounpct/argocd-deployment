@@ -18,4 +18,4 @@ data:
         args: ["$ARG_PARAMETERS | argocd-vault-plugin generate - "]
       discover:
         find:
-          command: [sh, -c, find . -name *.yaml]
+          command: [sh, -c, 'date >> /tmp/plugin-discover-has-run; exit 0']
