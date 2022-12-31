@@ -12,9 +12,9 @@ data:
       version: v1.0
       init:
         command: ["/bin/sh", "-c"]
-        args: ["$ARGOCD_ENV_INIT_ARGS"]
+        args: ["$INIT_ARGS"]
       generate:
         command: [sh, -c]
-        args: ["$ARGOCD_ENV_ARG_PARAMETERS | argocd-vault-plugin generate - "]
+        args: ["$ARG_PARAMETERS | argocd-vault-plugin generate - "]
       discover:
         fileName: "./argocd/values/values.yaml"
