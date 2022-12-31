@@ -1,0 +1,9 @@
+{{- range .Values.applications }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .applicationName }}
+spec:
+  {{- .settings | toYaml | nindent 2 -}}
+{{- end -}}

@@ -1,0 +1,77 @@
+fullnameOverride: argocd
+argo-cd:
+  server:
+    service:
+      type: LoadBalancer
+  configs:
+    cm:
+      configManagementPlugins: |-
+        - name: avp-gsm-git
+          init:
+            command: ["/bin/sh", "-c"]
+            args: ["$ARGOCD_ENV_INIT_ARGS"]
+          generate:
+            command: [sh, -c]
+            args: ["$ARGOCD_ENV_ARG_PARAMETERS | argocd-vault-plugin generate - "]        
+        - name: avp-gsm-yaml
+          generate:
+            command: [sh, -c]
+            args: ["argocd-vault-plugin generate ./ "] 
+  repoServer:
+    volumes:
+      - name: custom-tools-avp
+        emptyDir: {}
+      - name: argocd-vault-profiles
+        secret:
+          secretName: argocd-vault-profiles
+    initContainers:
+      - name: download-tools-avp
+        image: alpine:3.8
+        command: [sh, -c]
+        args:
+          - >-
+            wget -O argocd-vault-plugin
+            https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v1.13.1/argocd-vault-plugin_1.13.1_linux_amd64 &&
+            chmod +x argocd-vault-plugin &&
+            mv argocd-vault-plugin /custom-tools-avp/
+        volumeMounts:
+          - mountPath: /custom-tools-avp
+            name: custom-tools-avp
+    volumeMounts:
+      - name: custom-tools-avp
+        mountPath: /usr/local/bin/argocd-vault-plugin
+        subPath: argocd-vault-plugin
+      - mountPath: /app/config/avp
+        name: argocd-vault-profiles
+        readOnly: true
+    env:  
+      - name: "GODEBUG"
+        value: "x509ignoreCN=0"
+      - name: "AVP_TYPE"
+        value: "gcpsecretmanager"
+      - name: "GOOGLE_APPLICATION_CREDENTIALS"
+        value: "/app/config/avp/google_credentials.json"
+
+projects:
+  - projectName: root-applications
+    description: Manage ArgoCD Project and Applications
+  - projectName: argocd
+    description: ArgoCD Project
+
+applications:
+  - applicationName: app-of-apps-global
+    settings:
+      project: root-applications
+      source: 
+        repoURL: 'https://github.com/dounpct/argocd-deployment.git'
+        path: 'applications'
+        targetRevision: master
+        directory:
+          recurse: true
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: argocd
+      syncPolicy: 
+        automated: {} 
+        syncOptions:
+          - CreateNamespace=true
