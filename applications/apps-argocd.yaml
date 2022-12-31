@@ -12,7 +12,6 @@ spec:
     repoURL: 'https://github.com/dounpct/argocd-deployment.git'
     targetRevision: master
     plugin:
-      name: avp-gsm-git
       env:
         - name:  INIT_ARGS
           value: "helm dep update"
