@@ -14,8 +14,8 @@ spec:
     plugin:
       name: avp-gsm-git
       env:
-        - name:  ARGOCD_ENV_INIT_ARGS
+        - name:  INIT_ARGS
           value: "helm dep update"
-        - name:  ARGOCD_ENV_ARG_PARAMETERS
+        - name:  ARG_PARAMETERS
           value: "helm template argocd -n argocd . -f values/values.yaml "
   syncPolicy: {}
