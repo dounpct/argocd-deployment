@@ -16,4 +16,6 @@ data:
       generate:
         command: [sh, -c]
         args: ["$ARG_PARAMETERS | argocd-vault-plugin generate - "]
-      
+      discover:
+        find:
+          command: [sh, -c, find . -name *.yaml]
