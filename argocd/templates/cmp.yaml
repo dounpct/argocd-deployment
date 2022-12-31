@@ -12,10 +12,10 @@ data:
       version: v1.0
       init:
         command: ["/bin/sh", "-c"]
-        args: ["$INIT_ARGS"]
+        args: ["$ARGOCD_ENV_INIT_ARGS"]
       generate:
         command: [sh, -c]
-        args: ["$ARG_PARAMETERS | argocd-vault-plugin generate - "]
+        args: ["$ARGOCD_ENV_ARG_PARAMETERS | argocd-vault-plugin generate - "]
       discover:
         find:
-          command: [sh, -c, 'date >> /tmp/plugin-discover-has-run; exit 0']
+          command: [sh, -c, find . -name *.yaml]
