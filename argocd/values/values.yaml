@@ -3,20 +3,21 @@ argo-cd:
   server:
     service:
       type: LoadBalancer
-  configs:
-    cm:
-      configManagementPlugins: |-
-        - name: avp-gsm-git
-          init:
-            command: ["/bin/sh", "-c"]
-            args: ["$ARGOCD_ENV_INIT_ARGS"]
-          generate:
-            command: [sh, -c]
-            args: ["$ARGOCD_ENV_ARG_PARAMETERS | argocd-vault-plugin generate - "]        
-        - name: avp-gsm-yaml
-          generate:
-            command: [sh, -c]
-            args: ["argocd-vault-plugin generate ./ "] 
+  ##### change from argocd-cm plugins to sidecar
+  # configs:
+  #   cm:
+  #     configManagementPlugins: |-
+  #       - name: avp-gsm-git
+  #         init:
+  #           command: ["/bin/sh", "-c"]
+  #           args: ["$ARGOCD_ENV_INIT_ARGS"]
+  #         generate:
+  #           command: [sh, -c]
+  #           args: ["$ARGOCD_ENV_ARG_PARAMETERS | argocd-vault-plugin generate - "]        
+  #       - name: avp-gsm-yaml
+  #         generate:
+  #           command: [sh, -c]
+  #           args: ["argocd-vault-plugin generate ./ "] 
   repoServer:
     volumes:
       - name: custom-tools-avp
@@ -24,6 +25,11 @@ argo-cd:
       - name: argocd-vault-profiles
         secret:
           secretName: argocd-vault-profiles
+      - configMap:
+          name: cmp-plugin
+        name: cmp-plugin
+      - emptyDir: {}
+        name: cmp-tmp
     initContainers:
       - name: download-tools-avp
         image: alpine:3.8
@@ -36,14 +42,32 @@ argo-cd:
             mv argocd-vault-plugin /custom-tools-avp/
         volumeMounts:
           - mountPath: /custom-tools-avp
-            name: custom-tools-avp
+            name: custom-tools-avp         
+    extraContainers:
+      - name: cmp
+        command: [/var/run/argocd/argocd-cmp-server] # Entrypoint should be Argo CD lightweight CMP server i.e. argocd-cmp-server
+        image: busybox # This can be off-the-shelf or custom-built image
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 999
+        volumeMounts:
+          - mountPath: /var/run/argocd
+            name: var-files
+          - mountPath: /home/argocd/cmp-server/plugins
+            name: plugins
+          # Remove this volumeMount if you've chosen to bake the config file into the sidecar image.
+          - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+            subPath: plugin.yaml
+            name: cmp-plugin
+          - mountPath: /tmp
+            name: cmp-tmp
     volumeMounts:
       - name: custom-tools-avp
         mountPath: /usr/local/bin/argocd-vault-plugin
         subPath: argocd-vault-plugin
       - mountPath: /app/config/avp
         name: argocd-vault-profiles
-        readOnly: true
+        readOnly: true      
     env:  
       - name: "GODEBUG"
         value: "x509ignoreCN=0"
