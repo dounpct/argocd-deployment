@@ -16,7 +16,7 @@ data:
         command: [sh, -c, "$ARGOCD_ENV_ARG_PARAMETERS | argocd-vault-plugin generate - "]            
       discover:
         find:
-          command: [sh, -c, find . -name plugin-helm.txt]
+          command: [sh, -c, find ./vaules -name vaules.yaml]
   plugin-yaml: |
     apiVersion: argoproj.io/v1alpha1
     kind: ConfigManagementPlugin
