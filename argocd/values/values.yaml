@@ -44,6 +44,36 @@ argo-cd:
           - mountPath: /custom-tools-avp
             name: custom-tools-avp         
     extraContainers:
+      - name: cmp-helm
+        command: [/var/run/argocd/argocd-cmp-server] # Entrypoint should be Argo CD lightweight CMP server i.e. argocd-cmp-server
+        image: quay.io/argoproj/argocd:v2.5.5 # I test with busybox image then error about connect to google secret manager with X509  
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 999
+        volumeMounts:
+          - mountPath: /var/run/argocd
+            name: var-files
+          - mountPath: /home/argocd/cmp-server/plugins
+            name: plugins
+          # Remove this volumeMount if you've chosen to bake the config file into the sidecar image.
+          - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+            subPath: plugin-helm
+            name: cmp-plugin
+          - mountPath: /tmp
+            name: cmp-tmp
+          - name: custom-tools-avp
+            mountPath: /usr/local/bin/argocd-vault-plugin
+            subPath: argocd-vault-plugin
+          - mountPath: /app/config/avp
+            name: argocd-vault-profiles
+            readOnly: true
+        env:
+          - name: "GODEBUG"
+            value: "x509ignoreCN=0"
+          - name: "AVP_TYPE"
+            value: "gcpsecretmanager"
+          - name: "GOOGLE_APPLICATION_CREDENTIALS"
+            value: "/app/config/avp/google_credentials.json"
       - name: cmp-yaml
         command: [/var/run/argocd/argocd-cmp-server] # Entrypoint should be Argo CD lightweight CMP server i.e. argocd-cmp-server
         image: quay.io/argoproj/argocd:v2.5.5 # I test with busybox image then error about connect to google secret manager with X509  

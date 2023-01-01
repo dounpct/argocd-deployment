@@ -3,6 +3,20 @@ kind: ConfigMap
 metadata:
   name: cmp-plugin
 data:
+  plugin-helm: |
+    apiVersion: argoproj.io/v1alpha1
+    kind: ConfigManagementPlugin
+    metadata:
+      name: cmp-plugin-helm
+    spec:
+      version: v1.0
+      init:
+        command: [/bin/sh, -c, "$INIT_ARGS"]            
+      generate:
+        command: [sh, -c, "$ARG_PARAMETERS | argocd-vault-plugin generate - "]            
+      discover:
+        find:
+          command: [sh, -c, find ./values -name values.yaml]
   plugin-yaml: |
     apiVersion: argoproj.io/v1alpha1
     kind: ConfigManagementPlugin
