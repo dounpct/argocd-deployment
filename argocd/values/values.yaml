@@ -58,7 +58,7 @@ argo-cd:
           # Remove this volumeMount if you've chosen to bake the config file into the sidecar image.
           - mountPath: /home/argocd/cmp-server/config/plugin.yaml
             subPath: plugin-yaml
-            name: cmp-plugin-yaml
+            name: cmp-plugin
           - mountPath: /tmp
             name: cmp-tmp
           - name: custom-tools-avp
