@@ -18,4 +18,4 @@ data:
         args: ["$ARGOCD_ENV_ARG_PARAMETERS | argocd-vault-plugin generate - "]
       discover:
         find:
-          command: [sh, -c, find . -name *.yaml]
+          command: [sh, -c, find . -name env.yaml]
