@@ -10,12 +10,8 @@ data:
       name: cmp-plugin
     spec:
       version: v1.0
-      init:
-        command: ["/bin/sh", "-c"]
-        args: ["$ARGOCD_ENV_INIT_ARGS"]
       generate:
-        command: [sh, -c]
-        args: ["$ARGOCD_ENV_ARG_PARAMETERS | argocd-vault-plugin generate - "]
+        command: [sh, -c, ' argocd-vault-plugin generate ./ ']            
       discover:
         find:
           command: [sh, -c, find . -name env.yaml]

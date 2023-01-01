@@ -81,6 +81,8 @@ projects:
     description: Manage ArgoCD Project and Applications
   - projectName: argocd
     description: ArgoCD Project
+  - projectName: dev-app
+    description: dev-app Project
 
 applications:
   - applicationName: app-of-apps-global
