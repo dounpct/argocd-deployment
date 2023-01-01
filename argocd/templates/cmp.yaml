@@ -11,7 +11,7 @@ data:
     spec:
       version: v1.0
       generate:
-        command: [sh, -c, ' argocd-vault-plugin generate ./ ']            
+        command: [sh, -c, "argocd-vault-plugin generate ."]            
       discover:
         find:
           command: [sh, -c, find . -name secret.yaml]
