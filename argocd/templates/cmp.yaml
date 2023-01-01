@@ -11,12 +11,12 @@ data:
     spec:
       version: v1.0
       init:
-        command: [/bin/sh, -c, "$INIT_ARGS"]            
+        command: [/bin/sh, -c, "$ARGOCD_ENV_INIT_ARGS"]            
       generate:
-        command: [sh, -c, "$ARG_PARAMETERS | argocd-vault-plugin generate - "]            
+        command: [sh, -c, "$ARGOCD_ENV_ARG_PARAMETERS | argocd-vault-plugin generate - "]            
       discover:
         find:
-          command: [sh, -c, find ./values -name values.yaml]
+          command: [sh, -c, find . -name plugin-helm.txt]
   plugin-yaml: |
     apiVersion: argoproj.io/v1alpha1
     kind: ConfigManagementPlugin
@@ -28,4 +28,4 @@ data:
         command: [sh, -c, "argocd-vault-plugin generate ."]            
       discover:
         find:
-          command: [sh, -c, find . -name *.yaml]
+          command: [sh, -c, find . -name plugin-yaml.txt]
