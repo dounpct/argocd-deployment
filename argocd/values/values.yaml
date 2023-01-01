@@ -61,10 +61,10 @@ argo-cd:
             name: cmp-plugin
           - mountPath: /tmp
             name: cmp-tmp
-    volumeMounts:
-      - name: custom-tools-avp
-        mountPath: /usr/local/bin/argocd-vault-plugin
-        subPath: argocd-vault-plugin
+          - name: custom-tools-avp
+            mountPath: /usr/local/bin/argocd-vault-plugin
+            subPath: argocd-vault-plugin
+    volumeMounts:      
       - mountPath: /app/config/avp
         name: argocd-vault-profiles
         readOnly: true      
