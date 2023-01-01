@@ -17,7 +17,7 @@ argo-cd:
   #       - name: avp-gsm-yaml
   #         generate:
   #           command: [sh, -c]
-  #           args: ["argocd-vault-plugin generate ./ "] 
+  #           args: ["argocd-vault-plugin generate . "] 
   repoServer:
     volumes:
       - name: custom-tools-avp
@@ -46,7 +46,7 @@ argo-cd:
     extraContainers:
       - name: cmp
         command: [/var/run/argocd/argocd-cmp-server] # Entrypoint should be Argo CD lightweight CMP server i.e. argocd-cmp-server
-        image: busybox # This can be off-the-shelf or custom-built image
+        image: quay.io/argoproj/argocd:v2.5.5 # I test with busybox image then error about connect to google secret manager with X509  
         securityContext:
           runAsNonRoot: true
           runAsUser: 999
@@ -57,8 +57,8 @@ argo-cd:
             name: plugins
           # Remove this volumeMount if you've chosen to bake the config file into the sidecar image.
           - mountPath: /home/argocd/cmp-server/config/plugin.yaml
-            subPath: plugin.yaml
-            name: cmp-plugin
+            subPath: plugin-yaml
+            name: cmp-plugin-yaml
           - mountPath: /tmp
             name: cmp-tmp
           - name: custom-tools-avp
@@ -74,9 +74,6 @@ argo-cd:
             value: "gcpsecretmanager"
           - name: "GOOGLE_APPLICATION_CREDENTIALS"
             value: "/app/config/avp/google_credentials.json"
-    env:  
-      - name: "GODEBUG"
-        value: "x509ignoreCN=0"
     
 projects:
   - projectName: root-applications
