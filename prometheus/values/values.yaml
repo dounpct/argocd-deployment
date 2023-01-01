@@ -1,0 +1,11 @@
+prometheus:
+  server:
+    persistentVolume:
+      size: 20Gi
+    retention: "1000d"
+    strategy:
+      type: Recreate
+    extraFlags:
+      - storage.tsdb.retention.size=2GB
+      - web.enable-lifecycle
+
