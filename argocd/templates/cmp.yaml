@@ -28,4 +28,4 @@ data:
         command: [sh, -c, "argocd-vault-plugin generate ."]            
       discover:
         find:
-          command: [sh, -c, find . -name plugin-yaml.txt]
+          command: [sh, -c, find . -name *.yaml]
