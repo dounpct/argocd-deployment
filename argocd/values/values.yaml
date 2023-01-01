@@ -74,8 +74,10 @@ argo-cd:
             value: "gcpsecretmanager"
           - name: "GOOGLE_APPLICATION_CREDENTIALS"
             value: "/app/config/avp/google_credentials.json"
+    env:  
+      - name: "GODEBUG"
+        value: "x509ignoreCN=0"
     
-
 projects:
   - projectName: root-applications
     description: Manage ArgoCD Project and Applications
