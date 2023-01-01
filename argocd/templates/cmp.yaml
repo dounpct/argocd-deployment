@@ -14,4 +14,4 @@ data:
         command: [sh, -c, ' argocd-vault-plugin generate ./ ']            
       discover:
         find:
-          command: [sh, -c, find . -name env.yaml]
+          command: [sh, -c, find . -name secret.yaml]
