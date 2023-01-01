@@ -64,17 +64,17 @@ argo-cd:
           - name: custom-tools-avp
             mountPath: /usr/local/bin/argocd-vault-plugin
             subPath: argocd-vault-plugin
-    volumeMounts:      
-      - mountPath: /app/config/avp
-        name: argocd-vault-profiles
-        readOnly: true      
-    env:  
-      - name: "GODEBUG"
-        value: "x509ignoreCN=0"
-      - name: "AVP_TYPE"
-        value: "gcpsecretmanager"
-      - name: "GOOGLE_APPLICATION_CREDENTIALS"
-        value: "/app/config/avp/google_credentials.json"
+          - mountPath: /app/config/avp
+            name: argocd-vault-profiles
+            readOnly: true
+        env:
+          - name: "GODEBUG"
+            value: "x509ignoreCN=0"
+          - name: "AVP_TYPE"
+            value: "gcpsecretmanager"
+          - name: "GOOGLE_APPLICATION_CREDENTIALS"
+            value: "/app/config/avp/google_credentials.json"
+    
 
 projects:
   - projectName: root-applications
