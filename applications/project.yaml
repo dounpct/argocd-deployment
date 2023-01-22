@@ -13,3 +13,17 @@ spec:
   sourceRepos:
   - '*'
 ---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: cicd
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: cicd
+    server: https://kubernetes.default.svc
+  sourceRepos:
+  - '*'
+---
