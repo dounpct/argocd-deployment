@@ -23,6 +23,8 @@
     helm template jenkins -n cicd . -f values/values.yaml | argocd-vault-plugin generate - | kubectl -n jenkins apply -f -
 
 
+# get admin password
+    kubectl get secret jenkins -n cicd -o jsonpath="{.data.jenkins-admin-password}" | base64 -d
 # note for helm render
 
     helm template jenkins -n cicd . -f values/values.yaml | grep "# Source"
