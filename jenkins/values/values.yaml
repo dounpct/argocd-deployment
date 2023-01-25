@@ -4,4 +4,4 @@ jenkins:
     numExecutors: 2                            #default 0 and can not run script at master node
 
   persistence:
-    size: "50Gi"
+    size: "40Gi"
