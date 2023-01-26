@@ -6,8 +6,10 @@ jenkins:
     installPlugins: false
     serviceType: LoadBalancer
     numExecutors: 2                            #default 0 and can not run script at master node
-
-    configUrls:
-      - https://storage.googleapis.com/devops-integration-config/jenkins-jcasc-config/develop/jenkins-jcasc-sandbox.yaml?ignoreCache=3
+    
+    JCasC:
+      configUrls:
+        - https://storage.googleapis.com/devops-integration-config/jenkins-jcasc-config/develop/jenkins-jcasc-jiw-test.yaml?ignoreCache=3
   persistence:
     size: "55Gi"
+
