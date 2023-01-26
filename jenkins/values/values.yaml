@@ -9,7 +9,7 @@ jenkins:
     
     JCasC:
       configUrls:
-        - https://storage.googleapis.com/devops-integration-config/jenkins-jcasc-config/develop/jenkins-jcasc-test-jiw-2.yaml?ignoreCache=4
+        - https://storage.googleapis.com/devops-integration-config/jenkins-jcasc-config/develop/jenkins-jcasc-test-jiw-2.yaml?ignoreCache=5
   persistence:
     size: "55Gi"
 
