@@ -1,7 +1,7 @@
 jenkins:
   controller:
     image: "asia.gcr.io/gcp-dmp-devops/cicd/jenkins/jenkins-jcasc"
-    tag: "2.319.2-master"
+    tag: "0.0.1-master"
     imagePullSecretName: "gcr-authen"
     installPlugins: false
     serviceType: LoadBalancer
