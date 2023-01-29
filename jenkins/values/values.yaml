@@ -17,6 +17,9 @@ jenkins:
           - id: "${chart-admin-username}"
             name: "Jenkins Admin"
             password: "${JENKINS_ADMIN_PASSWORD}"
+          - id: "admin2"
+            name: "Jenkins Admin2"
+            password: "${JENKINS_ADMIN_PASSWORD}"
       authorizationStrategy: |-
         loggedInUsersCanDoAnything:
           allowAnonymousRead: false
