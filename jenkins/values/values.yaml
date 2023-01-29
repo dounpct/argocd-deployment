@@ -13,9 +13,9 @@ jenkins:
     size: "55Gi"
   
 secret:
-  CASC_JENKINS_CONFIG: https://storage.googleapis.com/devops-integration-config/jenkins-jcasc-config/develop/jenkins-jcasc-test-jiw-2.yaml?ignoreCache=10
   JENKINS_NAME: "JIW"
   JENKINS_URL: "http://34.142.171.125:8080/"
+  JENKINS_ADMIN_PASSWORD: <path:projects/362159383816/secrets/jenkins_admin_password#jenkins_admin_password>
   GCP_KEY_FILE_BYTES: <path:projects/362159383816/secrets/GCP_KEY_FILE_BYTES#GCP_KEY_FILE_BYTES>
   GITHUB_APP_READ: <path:projects/362159383816/secrets/GITHUB_APP_READ#GITHUB_APP_READ>
 
