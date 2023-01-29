@@ -9,6 +9,17 @@ jenkins:
     existingSecret: "jenkins-secret-data"
     JCasC:
       configUrls: https://storage.googleapis.com/devops-integration-config/jenkins-jcasc-config/develop/jenkins-jcasc-test-jiw-2.yaml?ignoreCache=16
+      securityRealm: |-
+        local:
+          allowsSignup: false
+          enableCaptcha: false
+          users:
+          - id: "${chart-admin-username}"
+            name: "Jenkins Admin"
+            password: "${JENKINS_ADMIN_PASSWORD}"
+      authorizationStrategy: |-
+        loggedInUsersCanDoAnything:
+          allowAnonymousRead: false
   persistence:
     size: "55Gi"
   
