@@ -18,4 +18,5 @@ secret:
   JENKINS_ADMIN_PASSWORD: <path:projects/362159383816/secrets/jenkins_admin_password#jenkins_admin_password>
   GCP_KEY_FILE_BYTES: <path:projects/362159383816/secrets/GCP_KEY_FILE_BYTES#GCP_KEY_FILE_BYTES>
   GITHUB_APP_READ: <path:projects/362159383816/secrets/GITHUB_APP_READ#GITHUB_APP_READ>
+  JENKINS_SLAVE_SECRET: <path:projects/362159383816/secrets/terraform-cluster-01-jenkins-slave-secret#terraform-cluster-01-jenkins-slave-secret>
 
