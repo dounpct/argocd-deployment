@@ -20,6 +20,20 @@ jenkins:
       configUrls: https://storage.googleapis.com/devops-integration-config/jenkins-jcasc-config/develop/jenkins-jcasc-test-jiw-2.yaml?ignoreCache=21      
   
   agent:
+    additionalContainers:
+    - sideContainerName: dind
+      image: docker
+      tag: dind
+      command: dockerd-entrypoint.sh
+      args: ""
+      privileged: true
+      resources:
+        requests:
+          cpu: 500m
+          memory: 1Gi
+        limits:
+          cpu: 1
+          memory: 2Gi
     podTemplates:
       python: |
         - name: python
