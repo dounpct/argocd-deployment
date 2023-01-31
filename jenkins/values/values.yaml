@@ -15,19 +15,7 @@ jenkins:
         welcome-message: |
           jenkins:
             systemMessage: Welcome to our CI\CD server.
-      configUrls: https://storage.googleapis.com/devops-integration-config/jenkins-jcasc-config/develop/jenkins-jcasc-test-jiw-2.yaml?ignoreCache=19      
-      securityRealm: |-
-        local:
-          allowsSignup: false
-          enableCaptcha: false
-          users:
-          - id: "${chart-admin-username}"
-            name: "Jenkins Admin"
-            password: "${chart-admin-password}"
-          - id: "admin2"
-            name: "Jenkins Admin2"
-            password: "${JENKINS_ADMIN_PASSWORD}"
-    
+      configUrls: https://storage.googleapis.com/devops-integration-config/jenkins-jcasc-config/develop/jenkins-jcasc-test-jiw-2.yaml?ignoreCache=20      
     
   persistence:
     size: "55Gi"
