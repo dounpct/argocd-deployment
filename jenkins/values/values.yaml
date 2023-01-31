@@ -16,7 +16,24 @@ jenkins:
           jenkins:
             systemMessage: Welcome to our CI\CD server.
       configUrls: https://storage.googleapis.com/devops-integration-config/jenkins-jcasc-config/develop/jenkins-jcasc-test-jiw-2.yaml?ignoreCache=21      
-    
+  
+  agent:
+    podTemplates:
+      python: |
+        - name: python
+          label: jenkins-python
+          serviceAccount: jenkins
+          containers:
+            - name: python
+              image: python:3
+              command: "/bin/sh -c"
+              args: "cat"
+              ttyEnabled: true
+              privileged: true
+              resourceRequestCpu: "400m"
+              resourceRequestMemory: "512Mi"
+              resourceLimitCpu: "1"
+              resourceLimitMemory: "1024Mi"
   persistence:
     size: "55Gi"
   
