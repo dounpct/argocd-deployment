@@ -8,7 +8,7 @@ jenkins:
     numExecutors: 2                            #default 0 and can not run script at master node
     existingSecret: "jenkins-secret-data"
     JCasC:
-      configUrls: https://storage.googleapis.com/devops-integration-config/jenkins-jcasc-config/develop/jenkins-jcasc-test-jiw-2.yaml?ignoreCache=16      
+      configUrls: https://storage.googleapis.com/devops-integration-config/jenkins-jcasc-config/develop/jenkins-jcasc-test-jiw-2.yaml?ignoreCache=17      
   persistence:
     size: "55Gi"
   
