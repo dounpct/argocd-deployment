@@ -18,6 +18,9 @@ argo-cd:
   #         generate:
   #           command: [sh, -c]
   #           args: ["argocd-vault-plugin generate . "] 
+  configs:
+    secret:
+      argocdServerAdminPassword: <path:projects/362159383816/secrets/argocd-admin-password#argocd-admin-password>
   repoServer:
     volumes:
       - name: custom-tools-avp
