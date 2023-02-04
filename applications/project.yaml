@@ -27,3 +27,17 @@ spec:
   sourceRepos:
   - '*'
 ---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: mlflow
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: mlflow
+    server: https://kubernetes.default.svc
+  sourceRepos:
+  - '*'
+---
