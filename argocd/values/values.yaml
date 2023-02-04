@@ -20,6 +20,7 @@ argo-cd:
   #           args: ["argocd-vault-plugin generate . "] 
   configs:
     secret:
+      ## `htpasswd -nbBC 10 "" $ARGO_PWD | tr -d ':\n' | sed 's/$2y/$2a/'`
       argocdServerAdminPassword: <path:projects/362159383816/secrets/argocd-admin-password#argocd-admin-password>
   repoServer:
     volumes:
