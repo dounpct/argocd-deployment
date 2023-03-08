@@ -51,7 +51,7 @@ jenkins:
               resourceLimitCpu: "1"
               resourceLimitMemory: "1024Mi"
   persistence:
-    size: "55Gi"
+    size: "60Gi"
   
 secret:
   JENKINS_NAME: "JIW"
