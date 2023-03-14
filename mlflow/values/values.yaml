@@ -162,7 +162,8 @@ mlflow:
     # artifactsOnly
 
   # -- Extra environment variables
-  extraEnvVars: {}
+  extraEnvVars:
+    GOOGLE_APPLICATION_CREDENTIALS: "/app/config/google/google_credentials.json"
     # MLFLOW_S3_IGNORE_TLS: true
     # MLFLOW_S3_UPLOAD_EXTRA_ARGS: '{"ServerSideEncryption": "aws:kms", "SSEKMSKeyId": "1234"}'
     # AWS_DEFAULT_REGION: my_region
@@ -261,14 +262,14 @@ mlflow:
   # - name: mlflow-volume
   #   persistentVolumeClaim:
   #     claimName: mlflow-pv-volume
-  # - name: example
-  #   configMap:
-  #     name: example
+  - name: google-credentials-creds
+      secret:
+        secretName: google-credentials-creds
 
   # -- Extra Volume Mounts for the mlflow container
   extraVolumeMounts: []
-  # - name: mlflow-volume
-  #   mountPath: /mlflow/data
+  - name: google-credentials-creds
+    mountPath: /app/config/google
   # - name: example
   #   mountPath: /example
 
