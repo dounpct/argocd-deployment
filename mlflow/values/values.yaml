@@ -73,7 +73,7 @@ mlflow:
 
     postgres:
       # -- Specifies if you want to use postgres backend storage
-      enabled: false
+      enabled: true
       # -- Postgres host address. e.g. your RDS or Azure Postgres Service endpoint
       host: "postgresql.postgresql.svc.cluster.local" # required
       # -- Postgres service port
