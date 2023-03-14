@@ -75,15 +75,15 @@ mlflow:
       # -- Specifies if you want to use postgres backend storage
       enabled: false
       # -- Postgres host address. e.g. your RDS or Azure Postgres Service endpoint
-      host: "" # required
+      host: "postgresql.postgresql.svc.cluster.local" # required
       # -- Postgres service port
       port: 5432 # required
       # -- mlflow database name created before in the postgres instance
-      database: "" # required
+      database: "mlflow" # required
       # -- postgres database user name which can access to mlflow database
-      user: "" # required
+      user: "postgres" # required
       # -- postgres database user password which can access to mlflow database
-      password: "" # required
+      password: <path:projects/362159383816/secrets/postgresql-admin-password#postgresql-admin-password> # required
       # -- postgres database connection driver. e.g.: "psycopg2"
       driver: ""
 

@@ -3,3 +3,4 @@ postgresql:
     postgresql:
       auth:
         postgresPassword: <path:projects/362159383816/secrets/postgresql-admin-password#postgresql-admin-password>
+        database: "mlflow"
