@@ -258,16 +258,16 @@ mlflow:
   extraContainers: []
 
   # -- Extra Volumes for the pod
-  extraVolumes: []
+  extraVolumes:
   # - name: mlflow-volume
   #   persistentVolumeClaim:
   #     claimName: mlflow-pv-volume
   - name: google-credentials-creds
-      secret:
-        secretName: google-credentials-creds
+    secret:
+      secretName: google-credentials-creds
 
   # -- Extra Volume Mounts for the mlflow container
-  extraVolumeMounts: []
+  extraVolumeMounts:
   - name: google-credentials-creds
     mountPath: /app/config/google
   # - name: example
