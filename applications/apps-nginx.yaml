@@ -13,19 +13,19 @@ spec:
         controller:
           resources:
             limits:
-              cpu: 200m
-              memory: 190Mi
+              cpu: 500m
+              memory: 500Mi
             requests:
-              cpu: 100m
-              memory: 90Mi
+              cpu: 300m
+              memory: 200Mi
           autoscaling:
             apiVersion: autoscaling/v2
             enabled: true
             annotations: {}
             minReplicas: 1
             maxReplicas: 11
-            targetCPUUtilizationPercentage: 50
-            targetMemoryUtilizationPercentage: 50
+            targetCPUUtilizationPercentage: 70
+            targetMemoryUtilizationPercentage: 70
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: ingress-nginx
