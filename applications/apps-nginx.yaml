@@ -11,15 +11,16 @@ spec:
     helm:
       values: |
         controller:
-          limits:
-            cpu: 200m
-            memory: 190Mi
-          requests:
-            cpu: 100m
-            memory: 90Mi
+          resources:
+            limits:
+              cpu: 200m
+              memory: 190Mi
+            requests:
+              cpu: 100m
+              memory: 90Mi
           autoscaling:
             apiVersion: autoscaling/v2
-            enabled: false
+            enabled: true
             annotations: {}
             minReplicas: 1
             maxReplicas: 11
