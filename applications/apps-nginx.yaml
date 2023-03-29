@@ -10,20 +10,21 @@ spec:
     chart: ingress-nginx
     helm:
       values: |
-        limits:
-          cpu: 200m
-          memory: 190Mi
-        requests:
-          cpu: 100m
-          memory: 90Mi
-        autoscaling:
-          apiVersion: autoscaling/v2
-          enabled: false
-          annotations: {}
-          minReplicas: 1
-          maxReplicas: 11
-          targetCPUUtilizationPercentage: 50
-          targetMemoryUtilizationPercentage: 50
+        controller:
+          limits:
+            cpu: 200m
+            memory: 190Mi
+          requests:
+            cpu: 100m
+            memory: 90Mi
+          autoscaling:
+            apiVersion: autoscaling/v2
+            enabled: false
+            annotations: {}
+            minReplicas: 1
+            maxReplicas: 11
+            targetCPUUtilizationPercentage: 50
+            targetMemoryUtilizationPercentage: 50
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: ingress-nginx
