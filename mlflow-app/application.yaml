@@ -31,8 +31,12 @@ spec:
               mountPath: "/etc/secrets"
               readOnly: true
           resources:
+            limits:
+              cpu: 1000m
+              memory: 600Mi
             requests:
-              cpu: "1000m"
+              cpu: 500m
+              memory: 300Mi
       imagePullSecrets:
       - name: gcr-authen
       
@@ -59,3 +63,16 @@ spec:
   selector:
     app: mlflow-serving
   type: ClusterIP
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: mlflow-serving
+spec:
+  maxReplicas: 1
+  minReplicas: 3
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: mlflow-serving
+  targetCPUUtilizationPercentage: 60
