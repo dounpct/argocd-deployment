@@ -38,6 +38,10 @@ spec:
   destinations:
   - namespace: mlflow
     server: https://kubernetes.default.svc
+  - namespace: mlflow-app
+    server: https://kubernetes.default.svc
+  - namespace: mlflow-reverse-proxy
+    server: https://kubernetes.default.svc
   sourceRepos:
   - '*'
 ---
