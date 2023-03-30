@@ -43,3 +43,19 @@ spec:
             items:
               - key: keyfile.json
                 path: keyfile.json
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mlflow-serving
+  name: mlflow-serving
+spec:
+  ports:
+  - name: http-web
+    port: 8082
+    protocol: TCP
+    targetPort: 8082
+  selector:
+    app: mlflow-serving
+  type: ClusterIP
