@@ -15,7 +15,7 @@ spec:
   - host: nginx-auth-test.tdg-int.net
     http:
       paths:
-      - path: /
+      - path: "/*"
         pathType: Prefix
         backend:
           service: 
