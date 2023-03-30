@@ -21,7 +21,7 @@ spec:
           image: asia.gcr.io/gcp-dmp-devops/cicd/devops/mlflow_serving:v1 #change here
           env:
             - name: MODEL_URI
-              value: "gs://mlflow_gke_test_20230314/5/8911fc4e3a514e969cac16d157b008ed/artifacts/mode" #change here
+              value: "gs://mlflow_gke_test_20230314/5/8911fc4e3a514e969cac16d157b008ed/artifacts/model" #change here
             - name: SERVING_PORT
               value: "8082"
             - name: GOOGLE_APPLICATION_CREDENTIALS
