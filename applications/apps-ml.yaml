@@ -31,6 +31,7 @@ spec:
     repoURL: 'https://github.com/dounpct/argocd-deployment.git'
     path: mlflow-app
     targetRevision: master
+    plugin: {}
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: mlflow-app
