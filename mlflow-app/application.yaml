@@ -69,8 +69,8 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: mlflow-serving
 spec:
-  maxReplicas: 1
-  minReplicas: 3
+  maxReplicas: 3
+  minReplicas: 1
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
