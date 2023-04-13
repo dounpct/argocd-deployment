@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jupyterhub
+spec:
+  project: jupyterhub
+  source:
+    path: 'jupyterhub'
+    repoURL: 'https://github.com/dounpct/argocd-deployment.git'
+    targetRevision: master
+    plugin:
+      env:
+        - name:  INIT_ARGS
+          value: "helm dep update"
+        - name:  ARG_PARAMETERS
+          value: "helm template jupyterhub -n jupyterhub . -f values/values.yaml "
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: jupyterhub
+  syncPolicy:
+    automated: {} 
+    syncOptions:
+      - CreateNamespace=true
