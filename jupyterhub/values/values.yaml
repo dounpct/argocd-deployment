@@ -1,0 +1,4 @@
+jupyterhub:
+  hub:
+    db:
+      password: <path:projects/362159383816/secrets/jupyterhub-admin-password#jupyterhub-admin-password>
