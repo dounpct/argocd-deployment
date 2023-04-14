@@ -5,8 +5,12 @@ jupyterhub:
     config:
       Authenticator:
         admin_users:
-          - adminuser1
-          - adminuser2
+          - admin1
+        allowed_users:
+          - user1
+    # ...
+      DummyAuthenticator:
+        password: <path:projects/362159383816/secrets/jupyterhub-admin-password#jupyterhub-admin-password>
     #   JupyterHub:
     #     admin_access: false
   proxy:
