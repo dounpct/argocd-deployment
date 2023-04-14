@@ -2,7 +2,11 @@ jupyterhub:
   hub:
     db:
       password: <path:projects/362159383816/secrets/jupyterhub-admin-password#jupyterhub-admin-password>
-    # config:
+    config:
+      Authenticator:
+        admin_users:
+          - adminuser1
+          - adminuser2
     #   JupyterHub:
     #     admin_access: false
   proxy:
