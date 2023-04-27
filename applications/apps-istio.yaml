@@ -30,7 +30,7 @@ spec:
       values: |
         pilot:
           image: gcr.io/istio-release/pilot:1.17.2
-          tag: 1.17.2          
+          tag: 1.17.3         
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: istio-system
