@@ -12,10 +12,14 @@ spec:
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: devops-test
-  syncPolicy:    
-    managedNamespaceMetadata: 
+  syncPolicy:
+    managedNamespaceMetadata:
+      labels: # The labels to set on the application namespace
+        any: label
+        you: like
       annotations: # The annotations to set on the application namespace
-      labels: 
-        istio-injection: enabled
+        the: same
+        applies: for
+        annotations: on-the-namespace
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true
