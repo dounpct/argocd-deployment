@@ -30,6 +30,9 @@ spec:
       values: |
         pilot:
           image: gcr.io/istio-release/pilot:1.17.2
+        global:
+          proxy:
+            image: docker.io/istio/proxyv2:1.17.2          
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: istio-system
