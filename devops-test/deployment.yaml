@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: devops-test    
+    version: master
+  name: devops-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devops-test
+      version: master
+  template:
+    metadata:
+      labels:
+        app: devops-test
+        version: master
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: devops-test-env
+        image: asia.gcr.io/gcp-dmp-devops/cicd/sandbox/devops-test:0.0.16
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 3000
+          timeoutSeconds: 2
+        name: devops-test
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 3000
+          timeoutSeconds: 2
+        resources:
+          limits:
+            cpu: 500m
+            memory: 5000Mi
+          requests:
+            cpu: 200m
+            memory: 200Mi
+      imagePullSecrets:
+      - name: gcr-authen

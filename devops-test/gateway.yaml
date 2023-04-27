@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: devops-test
+spec:
+  selector:
+    istio: ingressgateway-fn-ext
+  servers:
+  - hosts:
+    - '*.abx.net'
+    port:
+      name: devops-test
+      number: 80
+      protocol: HTTP

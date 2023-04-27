@@ -1,0 +1,14 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  labels:
+    version: master
+  name: devops-test
+spec:
+  minReplicas: 2
+  maxReplicas: 3
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: devops-test
+  targetCPUUtilizationPercentage: 70

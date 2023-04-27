@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: devops-test
+spec:
+  project: devops-test
+  source: 
+    repoURL: 'https://github.com/dounpct/argocd-deployment.git'
+    path: devops-test
+    targetRevision: master
+    plugin: {}
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: devops-test
+    labels:
+      istio-injection=enabled
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    managedNamespaceMetadata: 
+      labels: 
+        istio-injection: enabled
+    syncOptions:
+      - CreateNamespace=true
