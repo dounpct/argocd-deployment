@@ -17,6 +17,7 @@ spec:
       prune: true
       selfHeal: true
     managedNamespaceMetadata: 
+      annotations: # The annotations to set on the application namespace
       labels: 
         istio-injection: enabled
     syncOptions:
