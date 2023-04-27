@@ -13,13 +13,8 @@ spec:
     server: 'https://kubernetes.default.svc'
     namespace: devops-test
   syncPolicy:
-    managedNamespaceMetadata:
-      labels: # The labels to set on the application namespace
-        any: label
-        you: like
-      annotations: # The annotations to set on the application namespace
-        the: same
-        applies: for
-        annotations: on-the-namespace
+    automated:
+      prune: true
+      selfHeal: true
     syncOptions:
     - CreateNamespace=true
