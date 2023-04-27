@@ -1,0 +1,68 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istio-base
+spec:
+  project: istio
+  source:
+    repoURL: 'https://istio-release.storage.googleapis.com/charts'
+    targetRevision: 1.17.2
+    chart: base    
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: istio-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istio-istiod
+spec:
+  project: istio
+  source:
+    repoURL: 'https://istio-release.storage.googleapis.com/charts'
+    targetRevision: 1.17.2
+    chart: istiod
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: istio-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istio-ingressgateway-fn-ext
+spec:
+  project: istio
+  source:
+    repoURL: 'https://istio-release.storage.googleapis.com/charts'
+    targetRevision: 1.17.2
+    chart: gateway
+    helm:
+      values: |
+        name: istio-ingressgateway-fn-ext
+        resources:
+          requests:
+            cpu: 200m
+            memory: 256Mi
+          limits:
+            cpu: 2000m
+            memory: 1024Mi
+        autoscaling:
+          enabled: true
+          minReplicas: 2
+          maxReplicas: 5
+          targetCPUUtilizationPercentage: 80        
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: istio-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
