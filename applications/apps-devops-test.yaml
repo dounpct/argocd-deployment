@@ -12,10 +12,7 @@ spec:
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: devops-test
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+  syncPolicy:    
     managedNamespaceMetadata: 
       annotations: # The annotations to set on the application namespace
       labels: 
