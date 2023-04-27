@@ -13,8 +13,6 @@ spec:
     server: 'https://kubernetes.default.svc'
     namespace: devops-test
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+    automated: {}
     syncOptions:
     - CreateNamespace=true
