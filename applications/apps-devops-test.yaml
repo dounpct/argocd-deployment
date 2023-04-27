@@ -12,8 +12,6 @@ spec:
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: devops-test
-    labels:
-      istio-injection=enabled
   syncPolicy:
     automated:
       prune: true
