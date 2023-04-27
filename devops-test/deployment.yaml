@@ -6,7 +6,6 @@ metadata:
     version: master
   name: devops-test
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: devops-test
