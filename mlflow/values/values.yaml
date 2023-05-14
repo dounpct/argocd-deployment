@@ -56,7 +56,7 @@ mlflow:
 
   service:
     # -- Specifies what type of Service should be created
-    type: LoadBalancer
+    type: ClusterIP
     # -- Default Service port
     port: 5000
     # -- Default Service name
