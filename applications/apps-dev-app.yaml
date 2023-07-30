@@ -1,17 +1,17 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: dev-app
-spec:
-  project: dev-app
-  source: 
-    repoURL: 'https://github.com/dounpct/argocd-deployment.git'
-    path: dev-app
-    targetRevision: master
-    plugin: {}
-  destination:
-    server: 'https://kubernetes.default.svc'
-    namespace: dev-app
-  syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: dev-app
+# spec:
+#   project: dev-app
+#   source: 
+#     repoURL: 'https://github.com/dounpct/argocd-deployment.git'
+#     path: dev-app
+#     targetRevision: master
+#     plugin: {}
+#   destination:
+#     server: 'https://kubernetes.default.svc'
+#     namespace: dev-app
+#   syncPolicy:
+#     syncOptions:
+#       - CreateNamespace=true
