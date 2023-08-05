@@ -1,25 +1,25 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: mlflow
-# spec:
-#   project: mlflow
-#   source:
-#     path: 'mlflow'
-#     repoURL: 'https://github.com/dounpct/argocd-deployment.git'
-#     targetRevision: master
-#     plugin:
-#       env:
-#         - name:  INIT_ARGS
-#           value: "helm dep update"
-#         - name:  ARG_PARAMETERS
-#           value: "helm template mlflow -n mlflow . -f values/values.yaml "
-#   destination:
-#     server: https://kubernetes.default.svc
-#     namespace: mlflow
-#   syncPolicy:
-#     syncOptions:
-#       - CreateNamespace=true
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mlflow
+spec:
+  project: mlflow
+  source:
+    path: 'mlflow'
+    repoURL: 'https://github.com/dounpct/argocd-deployment.git'
+    targetRevision: master
+    plugin:
+      env:
+        - name:  INIT_ARGS
+          value: "helm dep update"
+        - name:  ARG_PARAMETERS
+          value: "helm template mlflow -n mlflow . -f values/values.yaml "
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: mlflow
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
 # ---
 # apiVersion: argoproj.io/v1alpha1
 # kind: Application
