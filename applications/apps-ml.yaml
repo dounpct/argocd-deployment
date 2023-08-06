@@ -20,21 +20,21 @@ spec:
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
-# ---
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: mlflow-app
-# spec:
-#   project: mlflow
-#   source: 
-#     repoURL: 'https://github.com/dounpct/argocd-deployment.git'
-#     path: mlflow-app
-#     targetRevision: master
-#     plugin: {}
-#   destination:
-#     server: 'https://kubernetes.default.svc'
-#     namespace: mlflow-app
-#   syncPolicy:
-#     syncOptions:
-#       - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mlflow-app
+spec:
+  project: mlflow
+  source: 
+    repoURL: 'https://github.com/dounpct/argocd-deployment.git'
+    path: mlflow-app
+    targetRevision: master
+    plugin: {}
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: mlflow-app
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
