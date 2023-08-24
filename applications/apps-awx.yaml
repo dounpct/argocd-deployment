@@ -13,6 +13,8 @@ spec:
         AWX:
           enabled: true
           name: ansible-awx
+          spec:
+            service_type: LoadBalancer
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: awx-operator
