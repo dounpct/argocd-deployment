@@ -8,24 +8,11 @@ spec:
     repoURL: 'https://ansible.github.io/awx-operator'
     targetRevision: 2.5.1
     chart: awx-operator
-    # helm:
-    #   values: |
-    #     controller:
-    #       resources:
-    #         limits:
-    #           cpu: 500m
-    #           memory: 500Mi
-    #         requests:
-    #           cpu: 300m
-    #           memory: 200Mi
-    #       autoscaling:
-    #         apiVersion: autoscaling/v2
-    #         enabled: true
-    #         annotations: {}
-    #         minReplicas: 1
-    #         maxReplicas: 11
-    #         targetCPUUtilizationPercentage: 70
-    #         targetMemoryUtilizationPercentage: 70
+    helm:
+      values: |
+        AWX:
+          enabled: true
+          name: ansible-awx
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: awx-operator
