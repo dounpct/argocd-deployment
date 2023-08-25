@@ -4,4 +4,4 @@ awx-operator:
     name: ansible-awx
     spec:
       service_type: LoadBalancer
-      admin_password: <path:projects/362159383816/secrets/argocd-admin-password#argocd-admin-password>
+      admin_password_secret: awx-custom-admin-password
