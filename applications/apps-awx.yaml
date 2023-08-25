@@ -5,20 +5,18 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://ansible.github.io/awx-operator'
-    targetRevision: 2.5.1
-    chart: awx-operator
-    helm:
-      values: |
-        AWX:
-          enabled: true
-          name: ansible-awx
-          spec:
-            service_type: LoadBalancer
+    path: 'awx-operator'
+    repoURL: 'https://github.com/dounpct/argocd-deployment.git'
+    targetRevision: master
+    plugin:
+      env:
+        - name:  INIT_ARGS
+          value: "helm dep update"
+        - name:  ARG_PARAMETERS
+          value: "helm template awx-operator -n awx-operator . -f values/values.yaml "
   destination:
-    server: 'https://kubernetes.default.svc'
+    server: https://kubernetes.default.svc
     namespace: awx-operator
   syncPolicy:
-    automated: {}
     syncOptions:
       - CreateNamespace=true

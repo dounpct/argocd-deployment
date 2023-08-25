@@ -1,0 +1,7 @@
+awx-operator:
+  AWX:
+    enabled: true
+    name: ansible-awx
+    spec:
+      service_type: LoadBalancer
+      admin_password: <path:projects/362159383816/secrets/argocd-admin-password#argocd-admin-password>
