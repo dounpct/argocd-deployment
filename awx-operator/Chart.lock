@@ -1,6 +1,6 @@
 dependencies:
-- name: postgresql
-  repository: https://charts.bitnami.com/bitnami
-  version: 12.2.3
-digest: sha256:33c81a0f937aa0758478d264ef6d34cfc73090ff9e98d36ed6764404c059fa75
-generated: "2023-03-14T22:14:22.1799696+07:00"
+- name: awx-operator
+  repository: https://ansible.github.io/awx-operator/
+  version: 2.5.1
+digest: sha256:5030c053c84af38b922c8269dfaa3391dc68d81ab403e51ac3203b4d0339fada
+generated: "2023-08-28T14:11:57.571989+07:00"

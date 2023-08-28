@@ -1,4 +1,4 @@
-awx-operator:
+operator:
   AWX:
     enabled: true
     name: ansible-awx
