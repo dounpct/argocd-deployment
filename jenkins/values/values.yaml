@@ -17,6 +17,17 @@ jenkins:
         welcome-message: |
           jenkins:
             systemMessage: Welcome to our CI\CD server.
+        # jenkins-credentials: |
+        #   credentials:
+        #     system:
+        #       domainCredentials:
+        #       - credentials:
+        #         - usernamePassword:
+        #             scope: GLOBAL
+        #             id: 'AWS_CREDENTIAL'
+        #             username: ${AWS_ACCESS_KEY_ID}
+        #             password: ${AWS_SECRET_ACCESS_KEY}
+
       configUrls: https://storage.googleapis.com/devops-integration-config/jenkins-jcasc-config/develop/jenkins-jcasc-test-jiw-2.yaml?ignoreCache=21      
   
   agent:
